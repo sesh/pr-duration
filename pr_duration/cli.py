@@ -81,7 +81,11 @@ def get_closed_pull_requests(repo, token, *, max_prs=500):
 
             if len(prs) >= max_prs:
                 return prs
+        elif response.status == 404:
+            click.echo(f"Received 404 from Github for {repo}. Check your token if this is a private repository.")
+            raise click.Abort()
         else:
+            click.echo(f"Receivied {response.status} from Github for {repo}. Returning PRs that we have so far.")
             return prs
 
     return prs
@@ -123,6 +127,10 @@ def cli(ctx, token, repo, max_age, excluded_authors, authors, max_prs):
         authors = [a.strip().lower() for a in authors.split(",")]
         prs = [pr for pr in prs if pr.author().lower() in authors]
         click.echo(f"Filtered to {len(prs)} that were authored by {authors}")
+
+    if len(prs) == 0:
+        click.echo(f"No PRs left for {repo}.")
+        raise click.Abort()
 
     ctx.ensure_object(dict)
     ctx.obj["prs"] = prs

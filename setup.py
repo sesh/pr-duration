@@ -32,6 +32,6 @@ setup(
         pr-duration=pr_duration.cli:cli
     """,
     install_requires=["click", "thttp"],
-    extras_require={"test": []},
+    extras_require={"test": ["coverage"]},
     python_requires=">=3.7",
 )
