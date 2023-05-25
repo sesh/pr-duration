@@ -1,4 +1,5 @@
 import unittest
+
 from pr_duration.cli import pretty_time_delta
 
 

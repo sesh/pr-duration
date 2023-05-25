@@ -1,5 +1,7 @@
 import unittest
+
 import click
+
 from pr_duration.cli import get_closed_pull_requests
 
 
