@@ -6,7 +6,7 @@ Check in on how long it takes your Pull Requests to go from Open -> Merged.
 
 Install this tool using `pip`:
 
-    pip install pr-duration
+    pip install git+https://github.com/sesh/pr-duration.git
 
 ## Usage
 
